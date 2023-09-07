@@ -5,6 +5,9 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { extendedConfig } from '../gluestack-ui.config';
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -12,7 +15,7 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  initialRouteName: 'index',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -46,11 +49,16 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <GluestackUIProvider config={extendedConfig}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="login" options={{ headerShown: false }} />
+        <Stack.Screen name="signup" options={{ headerShown: false }} />
+        <Stack.Screen name="forgot-password" options={{ headerShown: false }} />
+        <Stack.Screen name="verify-otp" options={{ headerShown: false }} />
+        <Stack.Screen name="create-password" options={{ headerShown: false }} />
+        <Stack.Screen name="test" options={{ headerShown: false }} />
       </Stack>
-    </ThemeProvider>
+    </GluestackUIProvider>
   );
 }
