@@ -18,7 +18,7 @@
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@gluestack-style/react": "^0.2.46",
-    "@gluestack-ui/themed": "^0.1.41",
+    "@gluestack-ui/themed": "^0.1.42",
     "@hookform/resolvers": "^3.1.0",
     "@legendapp/motion": "latest",
     "@react-navigation/native": "^6.0.2",
