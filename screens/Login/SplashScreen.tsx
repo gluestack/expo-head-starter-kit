@@ -6,10 +6,7 @@ import {
   Image,
   Center,
   ButtonText,
-  Link,
-  Text,
 } from '@gluestack-ui/themed';
-import { Link as ExpoRouterLink } from 'expo-router';
 
 import GuestLayout from '../../layouts/GuestLayout';
 import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
@@ -18,8 +15,8 @@ import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 function ActionButtons() {
   return (
     <VStack
-      space={'xs'}
-      mt={'$10'}
+      space="xs"
+      mt="$10"
       sx={{
         '@md': {
           mt: '$12',
@@ -44,7 +41,7 @@ function ActionButtons() {
         isFocusVisible={false}
         backgroundColor="$backgroundLight0"
       >
-        <ExpoRouterLink href="/login">
+        <StyledExpoRouterLink href="/login">
           <ButtonText
             sx={{
               textDecorationLine: 'none',
@@ -55,7 +52,7 @@ function ActionButtons() {
           >
             LOGIN
           </ButtonText>
-        </ExpoRouterLink>
+        </StyledExpoRouterLink>
       </Button>
 
       <Button
@@ -77,11 +74,11 @@ function ActionButtons() {
         isDisabled={false}
         isFocusVisible={false}
       >
-        <ExpoRouterLink href="/signup">
+        <StyledExpoRouterLink href="/signup">
           <ButtonText textDecorationLine="none" color="$textLight50">
             SIGN UP
           </ButtonText>
-        </ExpoRouterLink>
+        </StyledExpoRouterLink>
       </Button>
     </VStack>
   );
@@ -94,7 +91,7 @@ function HeaderLogo() {
         h="$10"
         w="$80"
         alt="gluestack-ui Pro"
-        resizeMode={'contain'}
+        resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
         sx={{
           '@md': {
@@ -113,8 +110,8 @@ function HeaderLogo() {
         alt="gluestack-ui Pro"
         display="flex"
         source={require('./assets/images/gluestackUiProLogo_mobile.png')}
-        height="$141"
-        width="$275"
+        h="$141"
+        w="$275"
       />
     </Box>
   );
@@ -130,9 +127,10 @@ export default function SplashScreen() {
         <Box
           maxWidth="$boxSize"
           w="$full"
+          minHeight="$authcard"
           sx={{
             '@md': {
-              h: '$544',
+              h: '$authcard',
               px: '$8',
               bg: '$primary500',
             },

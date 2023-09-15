@@ -10,44 +10,49 @@ import {
   Center,
   FormControl,
   Input,
-  Link,
   LinkText,
   FormControlHelperText,
   InputField,
   ButtonText,
   ArrowLeftIcon,
+  FormControlError,
+  FormControlErrorIcon,
+  FormControlErrorText,
+  Toast,
+  ToastTitle,
+  useToast,
 } from '@gluestack-ui/themed';
 
 import GuestLayout from '../../layouts/GuestLayout';
+import { z } from 'zod';
+import { AlertTriangle } from 'lucide-react-native';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Keyboard } from 'react-native';
+import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import { router } from 'expo-router';
+interface PinInputProps {
+  refList: React.RefObject<HTMLInputElement>[];
+  setInputFocus: React.Dispatch<React.SetStateAction<number>>;
+  focusedIndex: number;
+  setOtpInput: (otpInput: Array<string>) => void;
+  otpInput: any;
+}
 
-import { Link as ExpoRouterLink, router } from 'expo-router';
-
-function PinInput() {
-  const firstInput = useRef<HTMLDivElement>(null);
-  const secondInput = useRef<HTMLDivElement>(null);
-  const thirdInput = useRef<HTMLDivElement>();
-  const fourthInput = useRef<HTMLDivElement>();
-  const fifthInput = useRef<HTMLDivElement>();
-  const sixthInput = useRef<HTMLDivElement>();
-
-  const refList = [
-    firstInput,
-    secondInput,
-    thirdInput,
-    fourthInput,
-    fifthInput,
-    sixthInput,
-  ];
-
-  const [inputFocus, setInputFocus] = useState<number>(-1);
-
+function PinInput({
+  refList,
+  setInputFocus,
+  focusedIndex,
+  setOtpInput,
+  otpInput,
+}: PinInputProps) {
   return (
     <HStack space="xs">
       {Array.from({ length: 6 }, (_, index) => (
         <Input
           key={index}
           variant="outline"
-          w="14%"
+          w="$100/7"
           size="md"
           isDisabled={false}
           isInvalid={false}
@@ -61,21 +66,20 @@ function PinInput() {
                 w: '$1/6',
               },
               '@lg': {
-                w: '12%',
+                w: '$25/2',
               },
               '_light': {
                 color: '$textLight800',
                 borderBottomColor:
-                  inputFocus === index ? '$primary900' : '$borderLight500',
+                  focusedIndex === index ? '$primary900' : '$borderLight500',
               },
               '_dark': {
                 bgColor: '$textDark400',
                 borderBottomColor:
-                  inputFocus === index ? '$primary500' : '$borderDark100',
+                  focusedIndex === index ? '$primary500' : '$borderDark100',
               },
             }}
-            w="14%"
-            // ref={refList[index]}
+            w="$100/7"
             textAlign="center"
             maxLength={1}
             borderBottomWidth="$2"
@@ -86,6 +90,13 @@ function PinInput() {
               } else if (text.length === 0 && index > 0) {
                 refList[index - 1].current?.focus();
               }
+
+              const updateOtpAtIndex = (index: number, value: string) => {
+                const newOtpInput = [...otpInput];
+                newOtpInput[index] = value;
+                setOtpInput(newOtpInput);
+              };
+              updateOtpAtIndex(index, text);
             }}
             rounded="$xs"
           />
@@ -98,17 +109,15 @@ function PinInput() {
 function Header() {
   return (
     <HStack space="xs" px="$3" my="$4.5" alignItems="center">
-      <ExpoRouterLink href="..">
+      <StyledExpoRouterLink href="/">
         <Icon as={ArrowLeftIcon} color="$textLight50" />
-      </ExpoRouterLink>
+      </StyledExpoRouterLink>
       <Text color="$textLight50" fontSize="$lg">
-        {' '}
         OTP Verification
       </Text>
     </HStack>
   );
 }
-
 function SideContainerWeb() {
   return (
     <Center
@@ -136,7 +145,6 @@ function SideContainerWeb() {
     </Center>
   );
 }
-
 function MainText() {
   return (
     <VStack space="xs">
@@ -193,7 +201,6 @@ function MainText() {
     </VStack>
   );
 }
-
 function AccountLink() {
   return (
     <HStack
@@ -221,19 +228,22 @@ function AccountLink() {
       >
         Already have an account?
       </Text>
-
-      <ExpoRouterLink href="/login">
-        <LinkText sx={{
+      <StyledExpoRouterLink href="/login">
+        <LinkText
+          sx={{
             'color': '$primary500',
             'textDecorationLine': 'none',
             ':hover': { color: '$primary600' },
             'fontWeight': '$bold',
-          }} fontSize="$sm">Sign In</LinkText>
-      </ExpoRouterLink>
+          }}
+          fontSize="$sm"
+        >
+          Sign In
+        </LinkText>
+      </StyledExpoRouterLink>
     </HStack>
   );
 }
-
 function ResendLink() {
   return (
     <HStack py="$8">
@@ -248,20 +258,9 @@ function ResendLink() {
         }}
         fontSize="$sm"
       >
-        Didn't receive the OTP?{' '}
+        Didn't receive the OTP?
       </Text>
-
-      <Link
-        href=""
-        sx={{
-          _text: {
-            'color': '$primary500',
-            'textDecorationLine': 'none',
-            ':hover': { color: '$primary600' },
-            'fontWeight': '$bold',
-          },
-        }}
-      >
+      <StyledExpoRouterLink href="/verify-otp">
         <LinkText
           sx={{
             'color': '$primary500',
@@ -273,17 +272,80 @@ function ResendLink() {
         >
           RESEND OTP
         </LinkText>
-      </Link>
+      </StyledExpoRouterLink>
     </HStack>
   );
 }
 
-function onsubmit() {
-  // implement validation logic here
-  router.replace('/create-password');
-}
+const OTPSchema = z.object({
+  OTP: z.string().min(6, 'OTP must be at least 6 characters in length'),
+});
+
+type OTPSchemaType = z.infer<typeof OTPSchema>;
 
 export default function OtpVerification() {
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<OTPSchemaType>({
+    resolver: zodResolver(OTPSchema),
+  });
+
+  const [otpInput, setOtpInput] = useState(['', '', '', '', '', '']);
+  const firstInput = useRef<HTMLInputElement>(null);
+  const secondInput = useRef<HTMLInputElement>(null);
+  const thirdInput = useRef<HTMLInputElement>(null);
+  const fourthInput = useRef<HTMLInputElement>(null);
+  const fifthInput = useRef<HTMLInputElement>(null);
+  const sixthInput = useRef<HTMLInputElement>(null);
+
+  const refList = [
+    firstInput,
+    secondInput,
+    thirdInput,
+    fourthInput,
+    fifthInput,
+    sixthInput,
+  ];
+
+  const [inputFocus, setInputFocus] = useState<number>(-1);
+  const [validationError, setValidationError] = useState<string | null>(null); // State to hold validation error message
+
+  const toast = useToast();
+
+  const onSubmit = (_data: OTPSchemaType) => {
+    toast.show({
+      placement: 'bottom right',
+      render: ({ id }) => {
+        const pinValues = refList.map((ref) => ref?.current?.value);
+        const pin = pinValues.join('');
+        const Count = otpInput.filter((value) => value !== '').length;
+
+        if (Count < 6) {
+          setValidationError('OTP must be at least 6 characters in length');
+          return;
+        }
+        setValidationError(null);
+
+        return (
+          <Toast nativeID={id} variant="accent" action="success">
+            <ToastTitle>OTP sent successfully</ToastTitle>
+          </Toast>
+        );
+      },
+    });
+    reset();
+    // Implement your own onSubmit and navigation logic here.
+    router.replace('/create-password');
+  };
+
+  const handleKeyPress = () => {
+    Keyboard.dismiss();
+    handleSubmit(onSubmit)();
+  };
+
   return (
     <GuestLayout>
       <Box
@@ -296,7 +358,6 @@ export default function OtpVerification() {
       >
         <Header />
       </Box>
-
       <Box
         sx={{
           '@md': {
@@ -308,7 +369,6 @@ export default function OtpVerification() {
       >
         <SideContainerWeb />
       </Box>
-
       <Box
         sx={{
           '@md': {
@@ -330,10 +390,28 @@ export default function OtpVerification() {
           <MainText />
           <VStack space="md" mt="$6">
             <FormControl>
-              <PinInput />
+              <PinInput
+                refList={refList}
+                setInputFocus={setInputFocus}
+                focusedIndex={inputFocus}
+                otpInput={otpInput}
+                setOtpInput={setOtpInput}
+              />
+              {validationError && (
+                <Text fontSize="$sm" color="$red700">
+                  {validationError}
+                </Text>
+              )}
               <FormControlHelperText mt="$8">
                 <ResendLink />
               </FormControlHelperText>
+
+              <FormControlError>
+                <FormControlErrorIcon as={AlertTriangle} size="md" />
+                <FormControlErrorText>
+                  {errors?.OTP?.message}
+                </FormControlErrorText>
+              </FormControlError>
             </FormControl>
 
             <Button
@@ -342,7 +420,7 @@ export default function OtpVerification() {
               action="primary"
               isDisabled={false}
               isFocusVisible={false}
-              onPress={() => onsubmit()}
+              onPress={() => onSubmit()}
             >
               <ButtonText fontSize="$sm">PROCEED </ButtonText>
             </Button>

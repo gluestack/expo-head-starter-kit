@@ -1,5 +1,5 @@
 import { createConfig, config } from '@gluestack-ui/themed';
-export const extendedConfig = createConfig({
+const extendedConfig = createConfig({
   ...config.theme,
   tokens: {
     ...config.theme.tokens,
@@ -31,9 +31,20 @@ export const extendedConfig = createConfig({
       122: 122,
       141: 141,
       275: 275,
-      544: 544,
-      '110/7': '14%',
+      'authcard': 544,
+      // 544: 544,
+      '100/7': '14%',
       '25/2': '12%'
     },
   },
 });
+export { extendedConfig };
+
+// Get the type of Config
+type ConfigType = typeof extendedConfig;
+
+// Extend the internal styled config
+declare module '@gluestack-ui/themed' {
+  interface UIConfig extends ConfigType {}
+}
+

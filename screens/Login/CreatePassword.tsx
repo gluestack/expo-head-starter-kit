@@ -24,10 +24,11 @@ import {
   FormControlError,
   FormControlErrorIcon,
   FormControlErrorText,
-  InputIcon
+  InputIcon,
+  InputSlot,
 } from '@gluestack-ui/themed';
 import { AlertTriangle } from 'lucide-react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 import { useForm, Controller } from 'react-hook-form';
 import { z } from 'zod';
 import { Keyboard } from 'react-native';
@@ -35,7 +36,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import GuestLayout from '../../layouts/GuestLayout';
 
-import { Link as ExpoRouterLink, router } from 'expo-router';
+import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import { router } from 'expo-router';
 
 const createPasswordSchema = z.object({
   password: z
@@ -100,7 +102,7 @@ export default function CreatePassword() {
       });
     }
 
-    // Navigate screen to appropriate location    
+    // Navigate screen to appropriate location
     router.replace('/test');
   };
 
@@ -127,9 +129,9 @@ export default function CreatePassword() {
   function Header() {
     return (
       <HStack space="md" px="$3" my="$4.5" alignItems="center">
-        <ExpoRouterLink href="..">
+        <StyledExpoRouterLink href="..">
           <Icon size="6" as={ArrowLeftIcon} color="$textLight50" />
-        </ExpoRouterLink>
+        </StyledExpoRouterLink>
         <Text color="$textLight50" fontSize="$lg">
           Create Password
         </Text>
@@ -179,7 +181,7 @@ export default function CreatePassword() {
           w="$80"
           h="$10"
           alt="Gluestack-ui pro  "
-          resizeMode={'contain'}
+          resizeMode="contain"
           source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
         />
       </Center>
@@ -203,166 +205,153 @@ export default function CreatePassword() {
       >
         <WebSideContainer />
       </Box>
-      <KeyboardAwareScrollView
-        contentContainerStyle={{
-          flexGrow: 1,
+
+      <Box
+        bg="$backgroundLight0"
+        pt="$8"
+        pb="$4"
+        px="$4"
+        sx={{
+          '@md': {
+            p: '$8',
+          },
+          '_dark': { bg: '$backgroundDark800' },
         }}
-        style={{ flex: 1 }}
-        bounces={false}
-        enableOnAndroid={true}
+        flex={1}
       >
-        <Box
-          bg="$backgroundLight0"
-          pt="$8"
-          pb="$4"
-          px="$4"
-          sx={{
-            '@md': {
-              p: '$8',
-            },
-            '_dark': { bg: '$backgroundDark800' },
-          }}
-          flex={1}
-        >
-          <Box flex={1}>
-            <ScreenText />
-            <VStack
-              mt="$7"
-              space="md"
+        <Box flex={1}>
+          <ScreenText />
+          <VStack
+            mt="$7"
+            space="md"
+            sx={{
+              '@md': { mt: '$8' },
+            }}
+          >
+            <Box sx={{ '@base': { w: '$full' }, '@md': { width: '$80' } }}>
+              <FormControl isInvalid={!!errors.password} isRequired={true}>
+                <Controller
+                  defaultValue=""
+                  name="password"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await createPasswordSchema.parseAsync({
+                          password: value,
+                        });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input>
+                      <InputField
+                        fontSize="$sm"
+                        placeholder="Password"
+                        value={value}
+                        onChangeText={onChange}
+                        onBlur={onBlur}
+                        onSubmitEditing={handleKeyPress}
+                        returnKeyType="done"
+                        type={showPassword ? 'text' : 'password'}
+                      />
+                      <InputSlot onPress={handleConfirmPasswordState} mr="$2">
+                        <InputIcon
+                          as={showConfirmPassword ? EyeIcon : EyeOffIcon}
+                        />
+                      </InputSlot>
+                    </Input>
+                  )}
+                />
+                <FormControlError>
+                  <FormControlErrorIcon size="sm" as={AlertTriangle} />
+                  <FormControlErrorText>
+                    {errors?.password?.message}
+                  </FormControlErrorText>
+                </FormControlError>
+                <FormControlHelperText>
+                  <Text size="xs">Must be at least 8 characters</Text>
+                </FormControlHelperText>
+                <FormControlHelper></FormControlHelper>
+              </FormControl>
+            </Box>
+
+            <Box
               sx={{
-                '@md': { mt: '$8' },
+                '@base': { w: '$full' },
+                '@md': { width: '$80', mt: '$28' },
               }}
             >
-              <Box sx={{ '@base': { w: '$full' }, '@md': { width: '$80' } }}>
-                <FormControl isInvalid={!!errors.password} isRequired={true}>
-                  <Controller
-                    defaultValue=""
-                    name="password"
-                    control={control}
-                    rules={{
-                      validate: async (value) => {
-                        try {
-                          await createPasswordSchema.parseAsync({
-                            password: value,
-                          });
-                          return true;
-                        } catch (error: any) {
-                          return error.message;
-                        }
-                      },
-                    }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <Input>
-                        <InputField
-                          fontSize={'$sm'}
-                          placeholder="Password"
-                          value={value}
-                          onChangeText={onChange}
-                          onBlur={onBlur}
-                          onSubmitEditing={handleKeyPress}
-                          returnKeyType="done"
-                          type={showPassword ? 'text' : 'password'}
-                        />
-                        <InputIcon onPress={handleState} mr={'$2'}>
-                          <Icon
-                            as={showPassword ? EyeIcon : EyeOffIcon}
-                            color="gray"
-                          />
-                        </InputIcon>
-                      </Input>
-                    )}
-                  />
-                  <FormControlError>
-                    <FormControlErrorIcon size="$sm" as={AlertTriangle} />
-                    <FormControlErrorText>
-                      {errors?.password?.message}
-                    </FormControlErrorText>
-                  </FormControlError>
-                  <FormControlHelperText>
-                    <Text size="xs">Must be at least 8 characters</Text>
-                  </FormControlHelperText>
-                  <FormControlHelper></FormControlHelper>
-                </FormControl>
-              </Box>
-
-              <Box
-                sx={{
-                  '@base': { w: '$full' },
-                  '@md': { width: '$80', mt: '$28' },
-                }}
+              <FormControl
+                isInvalid={!!errors.confirmpassword}
+                isRequired={true}
               >
-                <FormControl
-                  isInvalid={!!errors.confirmpassword}
-                  isRequired={true}
-                >
-                  <Controller
-                    defaultValue=""
-                    name="confirmpassword"
-                    control={control}
-                    rules={{
-                      validate: async (value) => {
-                        try {
-                          await createPasswordSchema.parseAsync({
-                            confirmpassword: value,
-                          });
-                          return true;
-                        } catch (error: any) {
-                          return error.message;
-                        }
-                      },
-                    }}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                      <Input>
-                        <InputField
-                          fontSize={'$sm'}
-                          placeholder="Confirm Password"
-                          value={value}
-                          onChangeText={onChange}
-                          onBlur={onBlur}
-                          onSubmitEditing={handleKeyPress}
-                          returnKeyType="done"
-                          type={showConfirmPassword ? 'text' : 'password'}
-                        />
+                <Controller
+                  defaultValue=""
+                  name="confirmpassword"
+                  control={control}
+                  rules={{
+                    validate: async (value) => {
+                      try {
+                        await createPasswordSchema.parseAsync({
+                          confirmpassword: value,
+                        });
+                        return true;
+                      } catch (error: any) {
+                        return error.message;
+                      }
+                    },
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input>
+                      <InputField
+                        fontSize="$sm"
+                        placeholder="Confirm Password"
+                        value={value}
+                        onChangeText={onChange}
+                        onBlur={onBlur}
+                        onSubmitEditing={handleKeyPress}
+                        returnKeyType="done"
+                        type={showConfirmPassword ? 'text' : 'password'}
+                      />
+                      <InputSlot onPress={handleConfirmPasswordState} mr="$2">
                         <InputIcon
-                          onPress={handleConfirmPasswordState}
-                          mr={'$2'}
-                        >
-                          <Icon
-                            as={showConfirmPassword ? EyeIcon : EyeOffIcon}
-                            color="gray"
-                          />
-                        </InputIcon>
-                      </Input>
-                    )}
-                  />
+                          as={showConfirmPassword ? EyeIcon : EyeOffIcon}
+                        />
+                      </InputSlot>
+                    </Input>
+                  )}
+                />
 
-                  <FormControlError>
-                    <FormControlErrorIcon size="$sm" as={AlertTriangle} />
-                    <FormControlErrorText>
-                      {errors?.confirmpassword?.message}
-                    </FormControlErrorText>
-                  </FormControlError>
-                  <FormControlHelperText>
-                    <Text size="xs"> Both Password must match</Text>
-                  </FormControlHelperText>
+                <FormControlError>
+                  <FormControlErrorIcon size="sm" as={AlertTriangle} />
                   <FormControlErrorText>
-                    <Text size="xs">{errors.confirmpassword?.message}</Text>
+                    {errors?.confirmpassword?.message}
                   </FormControlErrorText>
-                </FormControl>
-              </Box>
-            </VStack>
-          </Box>
-          <Button
-            variant="solid"
-            size="lg"
-            mt="auto"
-            sx={{ '@md': { mt: '$40' } }}
-            onPress={handleSubmit(onSubmit)}
-          >
-            <ButtonText fontSize="$sm">UPDATE PASSWORD</ButtonText>
-          </Button>
+                </FormControlError>
+                <FormControlHelperText>
+                  <Text size="xs"> Both Password must match</Text>
+                </FormControlHelperText>
+                <FormControlErrorText>
+                  <Text size="xs">{errors.confirmpassword?.message}</Text>
+                </FormControlErrorText>
+              </FormControl>
+            </Box>
+          </VStack>
         </Box>
-      </KeyboardAwareScrollView>
+        <Button
+          variant="solid"
+          size="lg"
+          mt="auto"
+          sx={{ '@md': { mt: '$40' } }}
+          onPress={handleSubmit(onSubmit)}
+        >
+          <ButtonText fontSize="$sm">UPDATE PASSWORD</ButtonText>
+        </Button>
+      </Box>
     </GuestLayout>
   );
 }

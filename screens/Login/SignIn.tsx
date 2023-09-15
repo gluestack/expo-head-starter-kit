@@ -31,8 +31,8 @@ import {
   ArrowLeftIcon,
   Heading,
   LinkText,
+  InputSlot,
 } from '@gluestack-ui/themed';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -42,10 +42,7 @@ import { AlertTriangle, EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { GoogleIcon, FacebookIcon } from './assets/Icons/Social';
 
 import GuestLayout from '../../layouts/GuestLayout';
-
-import { Link as ExpoRouterLink, router } from 'expo-router';
-
-import { SafeAreaView } from 'react-native';
+import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 
 const signInSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -114,6 +111,7 @@ const SignInForm = () => {
         >
           <Controller
             name="email"
+            defaultValue=''
             control={control}
             rules={{
               validate: async (value) => {
@@ -141,7 +139,7 @@ const SignInForm = () => {
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon size="sm" as={AlertTriangle} />
+            <FormControlErrorIcon size="md" as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.email?.message}
             </FormControlErrorText>
@@ -151,6 +149,7 @@ const SignInForm = () => {
         <FormControl my="$6" isInvalid={!!errors.password} isRequired={true}>
           <Controller
             name="password"
+            defaultValue=''
             control={control}
             rules={{
               validate: async (value) => {
@@ -176,20 +175,17 @@ const SignInForm = () => {
                   returnKeyType="done"
                   type={showPassword ? 'text' : 'password'}
                 />
-                <InputIcon pr="$3" onPress={handleState}>
-                  <Icon
+                <InputSlot onPress={handleState} pr="$3">
+                  <InputIcon
                     as={showPassword ? EyeIcon : EyeOffIcon}
-                    color="$gray700"
-                    sx={{
-                      _dark: { color: '$warmGray400' },
-                    }}
+                    color="$textDark400"
                   />
-                </InputIcon>
+                </InputSlot>
               </Input>
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon size="sm" as={AlertTriangle} />
+            <FormControlErrorIcon size="md" as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.password?.message}
             </FormControlErrorText>
@@ -198,11 +194,11 @@ const SignInForm = () => {
           <FormControlHelper></FormControlHelper>
         </FormControl>
       </VStack>
-      <ExpoRouterLink href="/forgot-password">
+      <StyledExpoRouterLink ml="auto" href="/forgot-password">
         <LinkText
           fontSize="$sm"
           sx={{
-            '@md': { fontSize: '$sm' },
+            '@md': { fontSize: '$xs' },
             'color': '$primary500',
             'textDecorationLine': 'none',
             ':hover': { color: '$primary600' },
@@ -211,7 +207,7 @@ const SignInForm = () => {
         >
           Forgot password?
         </LinkText>
-      </ExpoRouterLink>
+      </StyledExpoRouterLink>
       <Controller
         name="rememberme"
         defaultValue={false}
@@ -271,9 +267,9 @@ function MobileHeader() {
   return (
     <VStack px="$3" mt="$4.5" space="md">
       <HStack space="md" alignItems="center">
-        <ExpoRouterLink href="..">
+        <StyledExpoRouterLink href="..">
           <Icon as={ArrowLeftIcon} color="$textLight50" />
-        </ExpoRouterLink>
+        </StyledExpoRouterLink>
         <Text color="$textLight50" fontSize="$lg">
           Sign In
         </Text>
@@ -299,14 +295,7 @@ function MobileHeader() {
 
 const Main = () => {
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-      }}
-      style={{ flex: 1 }}
-      bounces={false}
-      enableOnAndroid={true}
-    >
+    <>
       <Box sx={{ '@md': { display: 'none' } }}>
         <MobileHeader />
       </Box>
@@ -393,7 +382,7 @@ const Main = () => {
           >
             Don't have an account?
           </Text>
-          <ExpoRouterLink href="/signup">
+          <StyledExpoRouterLink href="/signup">
             <LinkText
               fontSize="$sm"
               sx={{
@@ -408,10 +397,10 @@ const Main = () => {
             >
               Sign up
             </LinkText>
-          </ExpoRouterLink>
+          </StyledExpoRouterLink>
         </HStack>
       </Box>
-    </KeyboardAwareScrollView>
+    </>
   );
 };
 

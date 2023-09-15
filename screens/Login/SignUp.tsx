@@ -31,8 +31,9 @@ import {
   Heading,
   ArrowLeftIcon,
   InputField,
+  InputSlot,
 } from '@gluestack-ui/themed';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 import { Controller, useForm } from 'react-hook-form';
 import { AlertTriangle, EyeIcon, EyeOffIcon } from 'lucide-react-native';
 import { z } from 'zod';
@@ -43,7 +44,8 @@ import { FacebookIcon, GoogleIcon } from './assets/Icons/Social';
 
 import GuestLayout from '../../layouts/GuestLayout';
 
-import { Link as ExpoRouterLink, router } from 'expo-router';
+import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
+import { router } from 'expo-router';
 
 const signUpSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
@@ -100,9 +102,9 @@ function MobileHeader() {
   return (
     <VStack px="$3" mt="$4.5" mb="$5" space="md">
       <HStack space="xs" alignItems="center">
-        <ExpoRouterLink href="..">
+        <StyledExpoRouterLink href="..">
           <Icon as={ArrowLeftIcon} color="$textLight50" />
-        </ExpoRouterLink>
+        </StyledExpoRouterLink>
 
         <Text color="$textLight50" fontSize="$lg">
           Sign Up
@@ -228,7 +230,7 @@ const SignUpForm = () => {
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon size="$sm" as={AlertTriangle} />
+            <FormControlErrorIcon size="sm" as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.email?.message}
             </FormControlErrorText>
@@ -263,14 +265,17 @@ const SignUpForm = () => {
                   returnKeyType="done"
                   type={showPassword ? 'text' : 'password'}
                 />
-                <InputIcon pr="$3" onPress={handleState}>
-                  <Icon as={showPassword ? EyeIcon : EyeOffIcon} color="gray" />
-                </InputIcon>
+                <InputSlot onPress={handleState} pr="$3">
+                  <InputIcon
+                    as={showPassword ? EyeIcon : EyeOffIcon}
+                    color="$textDark400"
+                  />
+                </InputSlot>
               </Input>
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon size="$sm" as={AlertTriangle} />
+            <FormControlErrorIcon size="sm" as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.password?.message}
             </FormControlErrorText>
@@ -308,24 +313,24 @@ const SignUpForm = () => {
                   returnKeyType="done"
                   type={showConfirmPassword ? 'text' : 'password'}
                 />
-                <InputIcon pr="$3" onPress={handleConfirmPwState}>
-                  <Icon
-                    as={showConfirmPassword ? EyeIcon : EyeOffIcon}
-                    color="gray"
+                <InputSlot onPress={handleConfirmPwState} pr="$3">
+                  <InputIcon
+                    as={showPassword ? EyeIcon : EyeOffIcon}
+                    color="$textDark400"
                   />
-                </InputIcon>
+                </InputSlot>
               </Input>
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon size="$sm" as={AlertTriangle} />
+            <FormControlErrorIcon size="sm" as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.password?.message}
             </FormControlErrorText>
           </FormControlError>
           {!errors?.password?.message && !pwMatched ? (
             <FormControlError>
-              <FormControlErrorIcon size="$sm" as={AlertTriangle} />
+              <FormControlErrorIcon size="sm" as={AlertTriangle} />
               <FormControlErrorText>
                 <Text>Passwords must be same</Text>
               </FormControlErrorText>
@@ -361,7 +366,11 @@ const SignUpForm = () => {
               }}
             >
               I accept the
-              <Link mb={-1} isExternal href="https://gluestack.io/terms-of-service">
+              <Link
+                mb={-1}
+                isExternal
+                href="https://gluestack.io/terms-of-service"
+              >
                 <LinkText
                   // lineHeight={'$2xs'}
                   fontSize="$sm"
@@ -372,7 +381,11 @@ const SignUpForm = () => {
                 </LinkText>
               </Link>
               &
-              <Link mb={-1} isExternal href="https://gluestack.io/privacy-policy">
+              <Link
+                mb={-1}
+                isExternal
+                href="https://gluestack.io/privacy-policy"
+              >
                 <LinkText
                   color="$primary500"
                   textDecorationLine="none"
@@ -397,14 +410,7 @@ const SignUpForm = () => {
 
 function SignUpFormComponent() {
   return (
-    <KeyboardAwareScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-      }}
-      style={{ width: '100%', height: '100%' }}
-      bounces={false}
-      enableOnAndroid={true}
-    >
+    <>
       <Box
         sx={{
           '@md': {
@@ -540,7 +546,7 @@ function SignUpFormComponent() {
         >
           <Text
             fontSize="$sm"
-            color="$coolGray500"
+            color="$backgroundDark500"
             fontWeight="normal"
             sx={{
               _dark: {
@@ -551,7 +557,7 @@ function SignUpFormComponent() {
             Already have an account?
           </Text>
 
-          <ExpoRouterLink href="/login">
+          <StyledExpoRouterLink href="/login">
             <LinkText
               sx={{
                 'color': '$primary500',
@@ -563,10 +569,10 @@ function SignUpFormComponent() {
             >
               Sign In
             </LinkText>
-          </ExpoRouterLink>
+          </StyledExpoRouterLink>
         </HStack>
       </Box>
-    </KeyboardAwareScrollView>
+    </>
   );
 }
 
