@@ -53,7 +53,7 @@ function ActionButtons() {
             textDecorationLine="none"
             color="$primary500"
           >
-            LOGIN New
+            LOGIN
           </ButtonText>
         </ExpoRouterLink>
       </Button>

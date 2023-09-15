@@ -352,7 +352,7 @@ exports[`SplashScreen 1`] = `
                       ]
                     }
                   >
-                    LOGIN New
+                    LOGIN
                   </Text>
                 </Text>
               </View>
