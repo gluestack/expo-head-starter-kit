@@ -7,7 +7,7 @@ import {
   Center,
   ButtonText,
   Link,
-  Text
+  Text,
 } from '@gluestack-ui/themed';
 import { Link as ExpoRouterLink } from 'expo-router';
 
@@ -26,7 +26,6 @@ function ActionButtons() {
         },
       }}
     >
-      
       <Button
         sx={{
           ':hover': {
@@ -54,7 +53,7 @@ function ActionButtons() {
             textDecorationLine="none"
             color="$primary500"
           >
-            LOGIN
+            LOGIN New
           </ButtonText>
         </ExpoRouterLink>
       </Button>
@@ -143,7 +142,7 @@ export default function SplashScreen() {
         >
           <HeaderLogo />
           <ActionButtons />
-       </Box>
+        </Box>
       </Center>
     </GuestLayout>
   );

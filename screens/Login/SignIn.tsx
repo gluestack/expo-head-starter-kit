@@ -415,7 +415,7 @@ const Main = () => {
   );
 };
 
-export default function SignIn() {
+const SignIn = () => {
   return (
     <GuestLayout>
       <Box display="none" sx={{ '@md': { display: 'flex' } }} flex={1}>
@@ -424,4 +424,6 @@ export default function SignIn() {
       <Main />
     </GuestLayout>
   );
-}
+};
+
+export default SignIn;
