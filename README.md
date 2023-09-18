@@ -55,6 +55,7 @@ expo start
 ## 🌈 Applying Fonts in your application
 
 You already have the font loaded in your application, now you can apply the font in your application.
+
 Add the font name in the `gluestack.config.js` file in the `fonts` object.
 
 ```javascript
