@@ -62,7 +62,7 @@ fonts: {
   body: "inter",
   mono: "monospace",
 }
-
+```
 ## 📖 Documentation
 
 For a deep dive into the components, structure, and configurations, please refer to our [detailed documentation](https://ui.gluestack.io/docs/getting-started/installation).
