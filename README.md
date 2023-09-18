@@ -74,6 +74,18 @@ For a deep dive into the components, structure, and configurations, please refer
 
 We've set up Jest as the testing framework for this project to ensure the reliability of your codebase. You can run the tests using the following commands:
 
+### Setting Up Jest with Expo
+
+To install `jest-expo` in your project, run the following command:
+
+```bash
+npx expo install jest-expo jest
+```
+
+### Writing Test Cases
+
+To write your own test cases, refer to the [Expo documentation on unit testing](https://docs.expo.dev/develop/unit-testing/) for comprehensive guidance and best practices.
+
 ### Running Tests
 
 To run tests, use the following command:
