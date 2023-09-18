@@ -10,7 +10,7 @@ type GuestLayoutProps = {
 
 export default function GuestLayout(props: GuestLayoutProps) {
   return (
-    <SafeAreaView style={{flex:1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Box
           sx={{

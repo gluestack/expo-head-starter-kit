@@ -1,0 +1,544 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Splash Screen 1`] = `
+<RNCSafeAreaView
+  edges={
+    {
+      "bottom": "additive",
+      "left": "additive",
+      "right": "additive",
+      "top": "additive",
+    }
+  }
+  style={
+    {
+      "flex": 1,
+    }
+  }
+>
+  <View
+    data-style=""
+    dataSet={
+      {
+        "style": "",
+      }
+    }
+    style={
+      [
+        undefined,
+        {},
+        {},
+        {
+          "height": "100%",
+        },
+        undefined,
+      ]
+    }
+  >
+    <RCTScrollView
+      bounces={false}
+      contentContainerStyle={
+        {
+          "alignItems": "center",
+          "flexGrow": 1,
+          "justifyContent": "center",
+        }
+      }
+      data-style=""
+      dataSet={
+        {
+          "style": "",
+        }
+      }
+      style={
+        [
+          undefined,
+          {},
+          {},
+          {
+            "flex": 1,
+          },
+          {},
+          {
+            "backgroundColor": "#0077E6",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View>
+        <View
+          data-style=""
+          dataSet={
+            {
+              "style": "",
+            }
+          }
+          style={
+            [
+              undefined,
+              {
+                "flexDirection": "column",
+              },
+              {},
+              {
+                "flex": 1,
+                "overflow": "hidden",
+                "width": "100%",
+              },
+              undefined,
+            ]
+          }
+        >
+          <View
+            data-style=""
+            dataSet={
+              {
+                "style": "",
+              }
+            }
+            style={
+              [
+                undefined,
+                {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                },
+                {},
+                {
+                  "flex": 1,
+                  "width": "100%",
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              data-style=""
+              dataSet={
+                {
+                  "style": "",
+                }
+              }
+              style={
+                [
+                  undefined,
+                  {},
+                  {},
+                  {
+                    "justifyContent": "center",
+                    "maxWidth": "boxSize",
+                    "minHeight": "authcard",
+                    "paddingHorizontal": 16,
+                    "width": "100%",
+                  },
+                  undefined,
+                ]
+              }
+            >
+              <View
+                data-style=""
+                dataSet={
+                  {
+                    "style": "",
+                  }
+                }
+                style={
+                  [
+                    undefined,
+                    {},
+                    {},
+                    {
+                      "alignItems": "center",
+                      "justifyContent": "center",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <Image
+                  accessibilityLabel="gluestack-ui Pro"
+                  accessibilityRole="image"
+                  alt="gluestack-ui Pro"
+                  data-style=""
+                  dataSet={
+                    {
+                      "style": "",
+                    }
+                  }
+                  resizeMode="contain"
+                  source={
+                    {
+                      "uri": 1,
+                    }
+                  }
+                  style={
+                    [
+                      undefined,
+                      {
+                        "maxWidth": "100%",
+                      },
+                      {},
+                      {
+                        "display": "none",
+                        "height": 40,
+                        "width": 320,
+                      },
+                      undefined,
+                    ]
+                  }
+                />
+                <Image
+                  accessibilityLabel="gluestack-ui Pro"
+                  accessibilityRole="image"
+                  alt="gluestack-ui Pro"
+                  data-style=""
+                  dataSet={
+                    {
+                      "style": "",
+                    }
+                  }
+                  source={
+                    {
+                      "uri": 1,
+                    }
+                  }
+                  style={
+                    [
+                      undefined,
+                      {
+                        "maxWidth": "100%",
+                      },
+                      {},
+                      {
+                        "display": "flex",
+                        "height": "141",
+                        "width": "275",
+                      },
+                      undefined,
+                    ]
+                  }
+                />
+              </View>
+              <View
+                data-style=""
+                dataSet={
+                  {
+                    "style": "",
+                  }
+                }
+                style={
+                  [
+                    undefined,
+                    {
+                      "flexDirection": "column",
+                    },
+                    {},
+                    {
+                      "gap": 4,
+                    },
+                    {
+                      "gap": 4,
+                    },
+                    {
+                      "marginTop": 40,
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": false,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  data-style=""
+                  dataSet={
+                    {
+                      "style": "",
+                    }
+                  }
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    [
+                      undefined,
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#0077E6",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      {},
+                      {
+                        "backgroundColor": "#0077E6",
+                        "borderColor": "#4AA9FF",
+                      },
+                      {},
+                      {
+                        "height": 40,
+                        "paddingHorizontal": 20,
+                      },
+                      {},
+                      {
+                        "backgroundColor": "#0077E6",
+                        "borderColor": "#4AA9FF",
+                      },
+                      {},
+                      {
+                        "height": 40,
+                        "paddingHorizontal": 20,
+                      },
+                      {},
+                      {
+                        "backgroundColor": "#FCFCFC",
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text
+                    accessibilityRole="link"
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    href="/login"
+                    onPress={[Function]}
+                    style={{}}
+                  >
+                    <Text
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {
+                            "color": "#525252",
+                            "fontFamily": undefined,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": 0,
+                          },
+                          {},
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          undefined,
+                          {
+                            "color": "#FCFCFC",
+                          },
+                          {},
+                          {
+                            "color": "#FCFCFC",
+                            "fontWeight": "600",
+                          },
+                          {
+                            "color": "#005DB4",
+                          },
+                          {
+                            "color": "#FCFCFC",
+                          },
+                          {},
+                          {
+                            "color": "#FCFCFC",
+                          },
+                          {
+                            "color": "#0077E6",
+                            "fontWeight": "700",
+                            "textDecorationLine": "none",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      LOGIN
+                    </Text>
+                  </Text>
+                </View>
+                <View
+                  accessibilityRole="button"
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": false,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
+                  accessible={true}
+                  collapsable={false}
+                  data-style=""
+                  dataSet={
+                    {
+                      "style": "",
+                    }
+                  }
+                  focusable={true}
+                  onBlur={[Function]}
+                  onClick={[Function]}
+                  onFocus={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    [
+                      undefined,
+                      {
+                        "alignItems": "center",
+                        "backgroundColor": "#0077E6",
+                        "borderRadius": 4,
+                        "flexDirection": "row",
+                        "justifyContent": "center",
+                      },
+                      {},
+                      {
+                        "backgroundColor": "#0077E6",
+                        "borderColor": "#4AA9FF",
+                      },
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 1,
+                      },
+                      {
+                        "height": 40,
+                        "paddingHorizontal": 20,
+                      },
+                      {
+                        "backgroundColor": "transparent",
+                      },
+                      {
+                        "backgroundColor": "#0077E6",
+                        "borderColor": "#4AA9FF",
+                      },
+                      {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 1,
+                      },
+                      {
+                        "height": 40,
+                        "paddingHorizontal": 20,
+                      },
+                      {
+                        "backgroundColor": "transparent",
+                      },
+                      {
+                        "borderColor": "#FCFCFC",
+                        "marginVertical": 16,
+                      },
+                      undefined,
+                    ]
+                  }
+                >
+                  <Text
+                    accessibilityRole="link"
+                    data-style=""
+                    dataSet={
+                      {
+                        "style": "",
+                      }
+                    }
+                    href="/signup"
+                    onPress={[Function]}
+                    style={{}}
+                  >
+                    <Text
+                      data-style=""
+                      dataSet={
+                        {
+                          "style": "",
+                        }
+                      }
+                      style={
+                        [
+                          undefined,
+                          {
+                            "color": "#525252",
+                            "fontFamily": undefined,
+                            "fontStyle": "normal",
+                            "fontWeight": "400",
+                            "letterSpacing": 0,
+                          },
+                          {},
+                          {
+                            "fontSize": 16,
+                            "lineHeight": 22,
+                          },
+                          undefined,
+                          {
+                            "color": "#FCFCFC",
+                          },
+                          {},
+                          {
+                            "color": "#FCFCFC",
+                            "fontWeight": "600",
+                          },
+                          {
+                            "color": "#005DB4",
+                          },
+                          {},
+                          {
+                            "color": "#F5F5F5",
+                            "textDecorationLine": "none",
+                          },
+                          undefined,
+                        ]
+                      }
+                    >
+                      SIGN UP
+                    </Text>
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</RNCSafeAreaView>
+`;
