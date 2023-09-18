@@ -52,6 +52,17 @@ npm install
 expo start
 ```
 
+## 🌈 Applying Fonts
+
+In this starter kit, we've made it easy for you to apply fonts to your application. We use the following font names in the `gluestack.config.js` file to maintain consistent typography across your app:
+
+```javascript
+fonts: {
+  heading: "inter",
+  body: "inter",
+  mono: "monospace",
+}
+
 ## 📖 Documentation
 
 For a deep dive into the components, structure, and configurations, please refer to our [detailed documentation](https://ui.gluestack.io/docs/getting-started/installation).
@@ -77,3 +88,4 @@ This project is licensed under the [MIT License](https://opensource.org/license/
 
 - Thanks to the [Expo team](https://expo.io/) for creating an amazing platform.
 - Shoutout to [gluestack-ui contributors](https://gluestack.io/) for their outstanding work.
+```
