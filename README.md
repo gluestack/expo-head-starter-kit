@@ -70,6 +70,22 @@ fonts: {
 
 For a deep dive into the components, structure, and configurations, please refer to our [detailed documentation](https://ui.gluestack.io/docs/getting-started/installation).
 
+## 🧪 Testing
+
+We've set up Jest as the testing framework for this project to ensure the reliability of your codebase. You can run the tests using the following commands:
+
+### Running Tests
+
+To run tests, use the following command:
+
+```bash
+npm run test
+```
+
+We've added an example of a Jest snapshot test case for the `SplashScreen` component. This test case uses Jest's `jest.mock` to mock a dependency and then renders the `SplashScreen` component within a `StyledProvider`. Finally, it asserts that the rendered component matches the previously saved snapshot.
+
+You can add more test cases as needed for your other components and features. This section serves as a starting point for incorporating testing into your project using Jest.
+
 ## 🙌 Contributing
 
 We welcome contributions! Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
