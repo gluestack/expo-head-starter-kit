@@ -26,6 +26,7 @@ import {
   FormControlErrorText,
   InputIcon,
   InputSlot,
+  ScrollView,
 } from '@gluestack-ui/themed';
 import { AlertTriangle } from 'lucide-react-native';
 
@@ -130,9 +131,18 @@ export default function CreatePassword() {
     return (
       <HStack space="md" px="$3" my="$4.5" alignItems="center">
         <StyledExpoRouterLink href="..">
-          <Icon size="6" as={ArrowLeftIcon} color="$textLight50" />
+          <Icon
+            size="md"
+            as={ArrowLeftIcon}
+            color="$textLight50"
+            sx={{ _dark: { color: '$textDark50' } }}
+          />
         </StyledExpoRouterLink>
-        <Text color="$textLight50" fontSize="$lg">
+        <Text
+          color="$textLight50"
+          fontSize="$lg"
+          sx={{ _dark: { color: '$textDark50' } }}
+        >
           Create Password
         </Text>
       </HStack>
@@ -144,22 +154,13 @@ export default function CreatePassword() {
       <VStack space="md">
         <Heading
           fontSize="$xl"
-          color="$textLight800"
           sx={{
             '@md': { fontSize: '$2xl' },
-
-            '_dark': { color: '$textDark50' },
           }}
         >
           Create new password
         </Heading>
-        <Text
-          color="$textLight800"
-          fontSize="$sm"
-          sx={{
-            _dark: { color: '$textDark400' },
-          }}
-        >
+        <Text fontSize="$sm">
           Your new password must be different from previous used passwords and
           must be of at least 8 characters.
         </Text>
@@ -172,15 +173,14 @@ export default function CreatePassword() {
       <Center
         flex={1}
         bg="$primary500"
-        px="$4"
         sx={{
-          '@md': { px: '$8' },
+          _dark: { bg: '$primary500' },
         }}
       >
         <Image
           w="$80"
           h="$10"
-          alt="Gluestack-ui pro  "
+          alt="Gluestack-ui pro"
           resizeMode="contain"
           source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
         />
@@ -205,21 +205,26 @@ export default function CreatePassword() {
       >
         <WebSideContainer />
       </Box>
-
-      <Box
-        bg="$backgroundLight0"
-        pt="$8"
-        pb="$4"
-        px="$4"
-        sx={{
-          '@md': {
-            p: '$8',
-          },
-          '_dark': { bg: '$backgroundDark800' },
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
         }}
         flex={1}
+        bounces={false}
       >
-        <Box flex={1}>
+        <Box
+          bg="$backgroundLight0"
+          pt="$8"
+          pb="$4"
+          px="$4"
+          sx={{
+            '@md': {
+              p: '$8',
+            },
+            '_dark': { bg: '$backgroundDark800' },
+          }}
+          flex={1}
+        >
           <ScreenText />
           <VStack
             mt="$7"
@@ -258,9 +263,9 @@ export default function CreatePassword() {
                         returnKeyType="done"
                         type={showPassword ? 'text' : 'password'}
                       />
-                      <InputSlot onPress={handleConfirmPasswordState} mr="$2">
+                      <InputSlot onPress={handleState} mr="$2">
                         <InputIcon
-                          as={showConfirmPassword ? EyeIcon : EyeOffIcon}
+                          as={showPassword ? EyeIcon : EyeOffIcon}
                         />
                       </InputSlot>
                     </Input>
@@ -282,7 +287,7 @@ export default function CreatePassword() {
             <Box
               sx={{
                 '@base': { w: '$full' },
-                '@md': { width: '$80', mt: '$28' },
+                '@md': { width: '$80' },
               }}
             >
               <FormControl
@@ -327,7 +332,7 @@ export default function CreatePassword() {
                 />
 
                 <FormControlError>
-                  <FormControlErrorIcon size="sm" as={AlertTriangle} />
+                  <FormControlErrorIcon size="md" as={AlertTriangle} />
                   <FormControlErrorText>
                     {errors?.confirmpassword?.message}
                   </FormControlErrorText>
@@ -341,17 +346,18 @@ export default function CreatePassword() {
               </FormControl>
             </Box>
           </VStack>
+
+          <Button
+            variant="solid"
+            size="lg"
+            mt="auto"
+            sx={{ '@md': { mt: '$40' } }}
+            onPress={handleSubmit(onSubmit)}
+          >
+            <ButtonText fontSize="$sm">UPDATE PASSWORD</ButtonText>
+          </Button>
         </Box>
-        <Button
-          variant="solid"
-          size="lg"
-          mt="auto"
-          sx={{ '@md': { mt: '$40' } }}
-          onPress={handleSubmit(onSubmit)}
-        >
-          <ButtonText fontSize="$sm">UPDATE PASSWORD</ButtonText>
-        </Button>
-      </Box>
+      </ScrollView>
     </GuestLayout>
   );
 }

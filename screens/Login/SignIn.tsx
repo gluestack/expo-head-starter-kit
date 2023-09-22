@@ -111,7 +111,7 @@ const SignInForm = () => {
         >
           <Controller
             name="email"
-            defaultValue=''
+            defaultValue=""
             control={control}
             rules={{
               validate: async (value) => {
@@ -149,7 +149,7 @@ const SignInForm = () => {
         <FormControl my="$6" isInvalid={!!errors.password} isRequired={true}>
           <Controller
             name="password"
-            defaultValue=''
+            defaultValue=""
             control={control}
             rules={{
               validate: async (value) => {
@@ -176,16 +176,13 @@ const SignInForm = () => {
                   type={showPassword ? 'text' : 'password'}
                 />
                 <InputSlot onPress={handleState} pr="$3">
-                  <InputIcon
-                    as={showPassword ? EyeIcon : EyeOffIcon}
-                    color="$textDark400"
-                  />
+                  <InputIcon as={showPassword ? EyeIcon : EyeOffIcon} />
                 </InputSlot>
               </Input>
             )}
           />
           <FormControlError>
-            <FormControlErrorIcon size="md" as={AlertTriangle} />
+            <FormControlErrorIcon size="sm" as={AlertTriangle} />
             <FormControlErrorText>
               {errors?.password?.message}
             </FormControlErrorText>
@@ -195,18 +192,7 @@ const SignInForm = () => {
         </FormControl>
       </VStack>
       <StyledExpoRouterLink ml="auto" href="/forgot-password">
-        <LinkText
-          fontSize="$sm"
-          sx={{
-            '@md': { fontSize: '$xs' },
-            'color': '$primary500',
-            'textDecorationLine': 'none',
-            ':hover': { color: '$primary600' },
-            'fontWeight': '$bold',
-          }}
-        >
-          Forgot password?
-        </LinkText>
+        <LinkText fontSize="$xs">Forgot password?</LinkText>
       </StyledExpoRouterLink>
       <Controller
         name="rememberme"
@@ -224,15 +210,7 @@ const SignInForm = () => {
             <CheckboxIndicator mr="$2">
               <CheckboxIcon as={CheckIcon} />
             </CheckboxIndicator>
-            <CheckboxLabel>
-              <Text
-                pl="$3"
-                sx={{ _dark: { color: '$warmGray400' } }}
-                fontSize="$sm"
-              >
-                Remember me and keep me logged in
-              </Text>
-            </CheckboxLabel>
+            <CheckboxLabel>Remember me and keep me logged in</CheckboxLabel>
           </Checkbox>
         )}
       />
@@ -240,7 +218,6 @@ const SignInForm = () => {
         variant="solid"
         size="lg"
         mt="$5"
-        sx={{ '@md': { mt: '$3' } }}
         onPress={handleSubmit(onSubmit)}
       >
         <ButtonText fontSize="$sm"> SIGN IN</ButtonText>
@@ -251,7 +228,13 @@ const SignInForm = () => {
 
 function SideContainerWeb() {
   return (
-    <Center flex={1} bg="$primary500">
+    <Center
+      flex={1}
+      bg="$primary500"
+      sx={{
+        _dark: { bg: '$primary500' },
+      }}
+    >
       <Image
         w="$80"
         h="$10"
@@ -268,14 +251,22 @@ function MobileHeader() {
     <VStack px="$3" mt="$4.5" space="md">
       <HStack space="md" alignItems="center">
         <StyledExpoRouterLink href="..">
-          <Icon as={ArrowLeftIcon} color="$textLight50" />
+          <Icon
+            as={ArrowLeftIcon}
+            color="$textLight50"
+            sx={{ _dark: { color: '$textDark50' } }}
+          />
         </StyledExpoRouterLink>
-        <Text color="$textLight50" fontSize="$lg">
+        <Text
+          color="$textLight50"
+          sx={{ _dark: { color: '$textDark50' } }}
+          fontSize="$lg"
+        >
           Sign In
         </Text>
       </HStack>
       <VStack space="xs" ml="$1" my="$4">
-        <Heading fontSize="$3xl" color="$textLight50" fontWeight="$bold">
+        <Heading color="$textLight50" sx={{ _dark: { color: '$textDark50' } }}>
           Welcome back
         </Heading>
         <Text
@@ -313,15 +304,17 @@ const Main = () => {
         py="$8"
         flex={1}
         bg="$backgroundLight0"
+        justifyContent="space-between"
         borderTopLeftRadius="$2xl"
         borderTopRightRadius="$2xl"
+        borderBottomRightRadius="$none"
       >
         <Heading
-          fontSize="$2xl"
-          color="$textLight800"
-          sx={{ '@md': { display: 'flex' }, '_dark': { color: '$textDark50' } }}
-          mb="$8"
           display="none"
+          mb="$8"
+          sx={{
+            '@md': { display: 'flex', fontSize: '$2xl' },
+          }}
         >
           Sign in to continue
         </Heading>
@@ -375,28 +368,14 @@ const Main = () => {
           mt="auto"
         >
           <Text
-            fontSize="$sm"
-            fontWeight="$normal"
             color="$textLight500"
+            fontSize="$sm"
             sx={{ _dark: { color: '$textDark400' } }}
           >
             Don't have an account?
           </Text>
           <StyledExpoRouterLink href="/signup">
-            <LinkText
-              fontSize="$sm"
-              sx={{
-                '@md': {
-                  fontSize: '$sm',
-                },
-                'color': '$primary500',
-                'textDecorationLine': 'none',
-                ':hover': { color: '$primary600' },
-                'fontWeight': '$bold',
-              }}
-            >
-              Sign up
-            </LinkText>
+            <LinkText fontSize="$sm">Sign up</LinkText>
           </StyledExpoRouterLink>
         </HStack>
       </Box>

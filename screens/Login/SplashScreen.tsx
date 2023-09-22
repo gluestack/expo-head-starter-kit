@@ -27,11 +27,6 @@ function ActionButtons() {
         sx={{
           ':hover': {
             bg: '$backgroundLight100',
-            _text: {
-              color: '$primary500',
-              textDecorationLine: 'none',
-              fontWeight: '$bold',
-            },
           },
         }}
         size="md"
@@ -43,10 +38,7 @@ function ActionButtons() {
       >
         <StyledExpoRouterLink href="/login">
           <ButtonText
-            sx={{
-              textDecorationLine: 'none',
-              fontWeight: '$bold',
-            }}
+            fontWeight="$bold"
             textDecorationLine="none"
             color="$primary500"
           >
@@ -58,11 +50,9 @@ function ActionButtons() {
       <Button
         sx={{
           ':hover': {
-            bg: '$white',
+            bg: '$backgroundLight0',
             _text: {
               color: '$primary500',
-              textDecorationLine: 'none',
-              fontWeight: '$bold',
             },
           },
         }}
@@ -125,12 +115,12 @@ export default function SplashScreen() {
     <GuestLayout>
       <Center w="$full" flex={1}>
         <Box
-          maxWidth="$boxSize"
+          maxWidth="$508"
           w="$full"
           minHeight="$authcard"
           sx={{
             '@md': {
-              h: '$authcard',
+              // h: '$authcard',
               px: '$8',
               bg: '$primary500',
             },
