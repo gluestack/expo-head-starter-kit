@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
 import { GluestackUIProvider } from '@gluestack-ui/themed';
-import { extendedConfig } from '../gluestack-ui.config';
+import { config } from '../gluestack-ui.config';
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -53,7 +53,7 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <GluestackUIProvider config={extendedConfig}>
+    <GluestackUIProvider config={config}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />

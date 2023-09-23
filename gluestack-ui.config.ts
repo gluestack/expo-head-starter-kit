@@ -1,23 +1,38 @@
-import { createConfig, config } from '@gluestack-ui/themed';
-const extendedConfig = createConfig({
-  ...config.theme,
+import { createConfig, config as defaultConfig } from '@gluestack-ui/themed';
+const config = createConfig({
+  ...defaultConfig.theme,
   tokens: {
-    ...config.theme.tokens,
+    ...defaultConfig.theme.tokens,
     colors: {
-      ...config.theme.tokens.colors,
-      primary0: '#E5F1FB',
-      primary50: '#f5f3ff',
-      primary100: '#ede8fd',
-      primary200: '#ddd6fe',
-      primary300: '#c4b4fd',
-      primary400: '#a68bfa',
-      primary500: '#8b5cf5',
-      primary600: '#7c3bec',
-      primary700: '#6d28d9',
-      primary800: '#5b21b6',
-      primary900: '#4b1e94',
-      primary950: '#000711',
-      
+      ...defaultConfig.theme.tokens.colors,
+      white: '#FFFFFF',
+      black: '#000000',
+      primary0: '#F5F3FF',
+      primary50: '#F5F3FF',
+      primary100: '#DDD6FE',
+      primary200: '#C4B5FD',
+      primary300: '#A78BFA',
+      primary400: '#8B5CF6',
+      primary500: '#7C3AED',
+      primary600: '#6D28D9',
+      primary700: '#5B21B6',
+      primary800: '#4C1D95',
+      primary900: '#441e7d',
+      primary950: '#441E7D',
+
+      secondary0: '#FCFCFC',
+      secondary50: '#f9fafb',
+      secondary100: '#f3f4f6',
+      secondary200: '#e4e7eb',
+      secondary300: '#d1d5da',
+      secondary400: '#9ca3af',
+      secondary500: '#6b7280',
+      secondary600: '#4b5563',
+      secondary700: '#374151',
+      secondary800: '#1f2937',
+      secondary900: '#111827',
+      secondary950: '#171717',
+
       backgroundDark0: '#FFFFFF',
       backgroundDark50: '#f9fafb',
       backgroundDark100: '#f3f4f6',
@@ -118,31 +133,107 @@ const extendedConfig = createConfig({
       info800: '#4C1D95',
       info900: '#441e7d',
     },
-    space:{
-      ...config.theme.tokens.space,
-      layoutPadding: 212,
-      '508': 508,
-      imgWidth: 372,
-      containerWidth: 1016,
-      qrBox: 140,
-      qrBoxInner: 234,
-      122: 122,
-      141: 141,
-      275: 275,
-      'authcard': 544,
-      // 544: 544,
+    space: {
+      ...defaultConfig.theme.tokens.space,
+      'px': '1px',
+      '0': 0,
+      '0.5': 2,
+      '1': 4,
+      '1.5': 6,
+      '2': 8,
+      '2.5': 10,
+      '3': 12,
+      '3.5': 14,
+      '4': 16,
+      '4.5': 18,
+      '5': 20,
+      '6': 24,
+      '7': 28,
+      '8': 32,
+      '9': 36,
+      '10': 40,
+      '11': 44,
+      '12': 48,
+      '16': 64,
+      '20': 80,
+      '24': 96,
+      '32': 128,
+      '35': 140,
+      '40': 160,
+      '48': 192,
+      '56': 224,
+      '64': 256,
+      '72': 288,
+      '80': 320,
+      '96': 384,
+      '1/2': '50%',
+      '1/3': '33.333%',
+      '2/3': '66.666%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      '1/5': '20%',
+      '2/5': '40%',
+      '3/5': '60%',
+      '4/5': '80%',
+      '1/6': '16.666%',
+      '2/6': '33.333%',
+      '3/6': '50%',
+      '4/6': '66.666%',
+      '5/6': '83.333%',
+      'full': '100%',
+
+      '25/2': '12%',
       '100/7': '14%',
-      '25/2': '12%'
+      '6/25': '24%',
+      '3/10': '30%',
+      '9/20': '45%',
+      '12/25': '48%',
+      '7/10': '70%',
+
+      '60': 60,
+      '74': 74,
+      '70': 70,
+      '90': 90,
+      '122': 122,
+      '141': 141,
+      '170': 170,
+      '182': 182,
+      '200': 200,
+      '212': 212, //layoutPadding
+      '234': 234, //qrBoxInner
+      '275': 275,
+      '354': 354,
+      '384': 384,
+      '372': 372, //imgWidth
+      '422': 422,
+      '441': 441,
+      '480': 480,
+      '508': 508, //boxSize
+      '544': 544,
+      'authcard': 544,
+      '622': 622,
+      '736': 736,
+      '764': 764,
+      'containerWidth': 1016,
+    },
+    borderWidths: {
+      ...defaultConfig.theme.tokens.borderWidths,
+      '20': 20,
+      '50': 50,
+    },
+    opacity: {
+      ...defaultConfig.theme.tokens.opacity,
     },
   },
-});
-export { extendedConfig };
+} as const);
+
+export { config };
 
 // Get the type of Config
-type ConfigType = typeof extendedConfig;
+type ConfigType = typeof config;
 
 // Extend the internal styled config
 declare module '@gluestack-ui/themed' {
   interface UIConfig extends ConfigType {}
 }
-
