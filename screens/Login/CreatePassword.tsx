@@ -89,6 +89,10 @@ export default function CreatePassword() {
           );
         },
       });
+
+      // Navigate screen to appropriate location
+      router.replace('/');
+
       reset();
     } else {
       toast.show({
@@ -102,9 +106,6 @@ export default function CreatePassword() {
         },
       });
     }
-
-    // Navigate screen to appropriate location
-    router.replace('/test');
   };
 
   const handleKeyPress = () => {
