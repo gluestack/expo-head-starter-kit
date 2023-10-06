@@ -9,8 +9,8 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import { useColorScheme } from 'react-native';
 
-import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { config } from '../gluestack-ui.config';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
 
 export {
   // Catch any errors thrown by the Layout component.
