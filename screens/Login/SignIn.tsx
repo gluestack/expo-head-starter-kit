@@ -44,6 +44,17 @@ import { GoogleIcon, FacebookIcon } from './assets/Icons/Social';
 import GuestLayout from '../../layouts/GuestLayout';
 import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 
+import { styled } from '@gluestack-style/react';
+
+const StyledImage = styled(Image, {
+  props: {
+    style: {
+      height: 40,
+      width: 320,
+    },
+  },
+});
+
 const signInSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
   password: z
@@ -235,7 +246,7 @@ function SideContainerWeb() {
         _dark: { bg: '$primary500' },
       }}
     >
-      <Image
+      <StyledImage
         w="$80"
         h="$10"
         alt="gluestack-ui Pro"

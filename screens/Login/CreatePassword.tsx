@@ -40,6 +40,16 @@ import GuestLayout from '../../layouts/GuestLayout';
 import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 import { router } from 'expo-router';
 
+import { styled } from '@gluestack-style/react';
+
+const StyledImage = styled(Image, {
+  props: {
+    style: {
+      height: 40,
+      width: 320,
+    },
+  },
+});
 const createPasswordSchema = z.object({
   password: z
     .string()
@@ -178,7 +188,7 @@ export default function CreatePassword() {
           _dark: { bg: '$primary500' },
         }}
       >
-        <Image
+        <StyledImage
           w="$80"
           h="$10"
           alt="Gluestack-ui pro"
