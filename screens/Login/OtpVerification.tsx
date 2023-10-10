@@ -32,6 +32,17 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Keyboard } from 'react-native';
 import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 import { router } from 'expo-router';
+
+import { styled } from '@gluestack-style/react';
+
+const StyledImage = styled(Image, {
+  props: {
+    style: {
+      height: 40,
+      width: 320,
+    },
+  },
+});
 interface PinInputProps {
   refList: React.RefObject<HTMLInputElement>[];
   setInputFocus: React.Dispatch<React.SetStateAction<number>>;
@@ -130,7 +141,7 @@ function SideContainerWeb() {
         },
       }}
     >
-      <Image
+      <StyledImage
         h="$10"
         w="$80"
         alt="gluestack-ui Pro"

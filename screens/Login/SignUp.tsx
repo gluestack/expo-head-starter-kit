@@ -47,6 +47,17 @@ import GuestLayout from '../../layouts/GuestLayout';
 import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 import { router } from 'expo-router';
 
+import { styled } from '@gluestack-style/react';
+
+const StyledImage = styled(Image, {
+  props: {
+    style: {
+      height: 40,
+      width: 320,
+    },
+  },
+});
+
 const signUpSchema = z.object({
   email: z.string().min(1, 'Email is required').email(),
   password: z
@@ -85,7 +96,7 @@ function SideContainerWeb() {
         },
       }}
     >
-      <Image
+      <StyledImage
         h="$10"
         w="$80"
         alt="gluestack-ui Pro"

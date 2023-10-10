@@ -11,6 +11,17 @@ import {
 import GuestLayout from '../../layouts/GuestLayout';
 import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 
+import { styled } from '@gluestack-style/react';
+
+const StyledImage = styled(Image, {
+  props: {
+    style: {
+      height: 40,
+      width: 320,
+    },
+  },
+});
+
 // to render login and sign up buttons
 function ActionButtons() {
   return (
@@ -77,9 +88,9 @@ function ActionButtons() {
 function HeaderLogo() {
   return (
     <Box alignItems="center" justifyContent="center">
-      <Image
+      <StyledImage
         h="$10"
-        w="$80"
+        w="$96"
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
@@ -91,7 +102,7 @@ function HeaderLogo() {
         display="none"
       />
 
-      <Image
+      <StyledImage
         sx={{
           '@md': {
             display: 'none',
@@ -100,8 +111,8 @@ function HeaderLogo() {
         alt="gluestack-ui Pro"
         display="flex"
         source={require('./assets/images/gluestackUiProLogo_mobile.png')}
-        h="$141"
-        w="$275"
+        h={444}
+        w={444}
       />
     </Box>
   );
