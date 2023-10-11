@@ -14,10 +14,20 @@ import StyledExpoRouterLink from '../../components/StyledExpoRouterLink';
 import { styled } from '@gluestack-style/react';
 
 const StyledImage = styled(Image, {
-  props: {
-    style: {
-      height: 40,
-      width: 320,
+  '@sm': {
+    props: {
+      style: {
+        height: 40,
+        width: 320,
+      },
+    },
+  },
+  '@md': {
+    props: {
+      style: {
+        height: 141,
+        width: 275,
+      },
     },
   },
 });
@@ -89,8 +99,6 @@ function HeaderLogo() {
   return (
     <Box alignItems="center" justifyContent="center">
       <StyledImage
-        h="$10"
-        w="$96"
         alt="gluestack-ui Pro"
         resizeMode="contain"
         source={require('./assets/images/gluestackUiProLogo_web_light.svg')}
@@ -111,8 +119,6 @@ function HeaderLogo() {
         alt="gluestack-ui Pro"
         display="flex"
         source={require('./assets/images/gluestackUiProLogo_mobile.png')}
-        h={444}
-        w={444}
       />
     </Box>
   );
