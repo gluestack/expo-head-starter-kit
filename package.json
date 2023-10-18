@@ -17,8 +17,9 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
-    "@gluestack-style/react": "^1.0.1",
-    "@gluestack-ui/themed": "^1.0.3",
+    "@gluestack-style/react": "^1.0.6",
+    "@gluestack-ui/config": "^1.0.1",
+    "@gluestack-ui/themed": "^1.0.6",
     "@hookform/resolvers": "^3.1.0",
     "@legendapp/motion": "latest",
     "@react-navigation/native": "^6.0.2",
