@@ -7,8 +7,6 @@ module.exports = function (api) {
       '@babel/preset-typescript',
     ],
     plugins: [
-      // Required for expo-router
-      'expo-router/babel',
     ],
   };
 };
